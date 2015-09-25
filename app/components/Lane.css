@@ -1,0 +1,46 @@
+.lane {
+  display: inline-block;
+  margin: 1em;
+  background-color: #efefef;
+  border: 1px solid #ccc;
+  min-width: 10em;
+  vertical-align: top;
+}
+
+.lane .lane-header {
+  padding: 10px;
+  overflow: auto;
+  color: #efefef;
+  background-color: #333;
+  transition: 0.3s;
+}
+
+.lane .lane-header--hovered {
+  background-color: #cfa;
+}
+
+.lane .lane-header--forbidden {
+  background-color: #fca;
+}
+
+.lane .lane-header button {
+  background-color: #efefef;
+  background-color: rgba(0,0,0,0);
+  color: #efefef;
+  border: 0;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.lane .lane-header .delete {
+  float: right;
+  visibility: hidden;
+}
+
+.lane .lane-header:hover .delete {
+  visibility: visible;
+}
+
+.lane .lane-header .lane-name {
+  float: left;
+}

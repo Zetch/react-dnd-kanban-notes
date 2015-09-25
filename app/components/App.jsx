@@ -1,25 +1,28 @@
 import React from 'react';
-import NoteList from './NoteList.jsx';
-import NoteActions from '../actions/NoteActions';
-import NoteStore from '../stores/NoteStore';
+import {DragDropContext} from 'react-dnd';
+import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+import LaneActions from '../actions/LaneActions';
+import LaneStore from '../stores/LaneStore';
+import LaneList from './LaneList.jsx';
 
 
+@DragDropContext(HTML5Backend)
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = NoteStore.getState();
+    this.state = LaneStore.getState();
     this.storeChanged = this.storeChanged.bind(this);
   }
 
   // Lifecycle
 
   componentDidMount() {
-    NoteStore.listen(this.storeChanged);
+    LaneStore.listen(this.storeChanged);
   }
 
   componentWillUnmount() {
-    NoteStore.listen(this.storeChanged);
+    LaneStore.listen(this.storeChanged);
   }
 
   storeChanged(state) {
@@ -28,16 +31,16 @@ class App extends React.Component {
 
   // Actions
 
-  addNote() {
-    NoteActions.create({ task: 'New task' });
+  addLane() {
+    LaneActions.create({ name: 'New lane' });
   }
 
-  editNote(id, task) {
-    NoteActions.update({ id, task });
+  editLane(id, name) {
+    LaneActions.update({ id, name });
   }
 
-  deleteNote(id) {
-    NoteActions.delete(id);
+  deleteLane(id) {
+    LaneActions.delete(id);
   }
 
   // Rendering
@@ -46,8 +49,10 @@ class App extends React.Component {
     return (
       <div>
         <h1>NoteApp</h1>
-        <button className='add-note' onClick={this.addNote}>+</button>
-        <NoteList tasks={this.state.notes} onEdit={this.editNote} onDelete={this.deleteNote}/>
+        <button className="add-lane" onClick={this.addLane}>+</button>
+        <LaneList items={this.state.lanes}
+          onEdit={this.editLane}
+          onDelete={this.deleteLane} />
       </div>
     );
   }

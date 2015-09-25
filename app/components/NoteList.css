@@ -1,0 +1,7 @@
+.note-list {
+  max-width: 15em;
+}
+
+.note-list .note:not(:last-child) {
+  margin-bottom: 1px;
+}

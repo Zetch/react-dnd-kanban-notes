@@ -1,0 +1,35 @@
+.note {
+  padding: 10px;
+  background-color: #fff;
+  transition: 0.5s;
+}
+
+.note--dragging {
+  background-color: #ffa;
+}
+
+.note--hovered {
+  background-color: #cfa;
+}
+
+.note--dragging.note--hovered {
+  background-color: #fca;
+}
+
+.note .task {
+  display: inline-block;
+}
+
+.note .delete {
+  float: right;
+  padding: 0;
+  background-color: #fdfdfd;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.note:hover .delete {
+  visibility: visible;
+}

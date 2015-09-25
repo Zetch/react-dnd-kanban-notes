@@ -7,6 +7,10 @@ class NoteStore {
   constructor() {
     this.bindActions(NoteActions);
     this.notes = [];
+
+    this.exportPublicMethods({
+      retrieve: this.retrieve.bind(this)
+    });
   }
 
   create(note) {
@@ -15,9 +19,8 @@ class NoteStore {
     this.setState({ notes: notes.concat(note) });
   }
 
-  retrieve(id) {
-    const index = this._find(id);
-    if (index >= 0) return this.notes[index];
+  retrieve(ids) {
+    return (ids || []).map(id => this.notes[this._find(id)]).filter(note => note);
   }
 
   update({id, task}) {
